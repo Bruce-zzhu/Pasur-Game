@@ -18,8 +18,11 @@ public abstract class Player
     protected Hand pickedCards;
     protected Hand surs;
 
+    protected int score;
+
     protected Player(int id)
     {
+        this.score = 0;
         this.id = id;
     }
 
@@ -231,8 +234,12 @@ public abstract class Player
 
     public int getScore()
     {
-        return 0;
+        return this.score;
     }
 
     abstract Card selectToPlay();
+
+    public void setScore(int newScore) {
+        this.score = newScore;
+    }
 }

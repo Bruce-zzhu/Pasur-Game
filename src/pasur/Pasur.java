@@ -9,6 +9,7 @@ import ch.aplu.jcardgame.Card;
 import ch.aplu.jcardgame.Deck;
 import ch.aplu.jcardgame.Hand;
 import config.Configuration;
+import score.ScoringComposite;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -41,9 +42,13 @@ public class Pasur
 
     private PropertyChangeSupport propertyChangePublisher = new PropertyChangeSupport(this);
 
+    private ScoringCalculator scoringCalculator;
+
     public Pasur(int nPlayers) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException,
             InstantiationException
     {
+        scoringCalculator = new ScoringCalculator();
+
         // Instantiate players
         this.nPlayers = nPlayers;
 
@@ -229,7 +234,7 @@ public class Pasur
                         if(k == nPlayers)
                             k = 0;
 
-                        updateScores();
+                        updateScores(scoringCalculator, false);
                     }
                 }
 
@@ -256,7 +261,8 @@ public class Pasur
                 }
             }
 
-            updateScores();
+
+            updateScores(scoringCalculator, false);
 
             currentStartingPlayerPos++;
             if(currentStartingPlayerPos == nPlayers)
@@ -328,6 +334,9 @@ public class Pasur
      */
     private void reset()
     {
+
+        updateScores(scoringCalculator, true);
+
         for(int i = 0; i < nPlayers; i++)
         {
             Player player = players[i];
@@ -339,13 +348,14 @@ public class Pasur
         deckHand = deck.toHand(false);
         deckHand.setVerso(true);
 
-        updateScores();
+
 
         propertyChangePublisher.firePropertyChange(ON_RESET, null, null);
     }
 
-    private void updateScores()
+    private void updateScores(ScoringCalculator scoringCalculator, boolean roundEnd)
     {
+        Map<Player, Integer> playersScores = scoringCalculator.calculateScores(this.players);
         String scoreString = "";
         for (int i = 0; i < nPlayers; i++)
         {
@@ -353,13 +363,20 @@ public class Pasur
                 scoreString += "        ";
 
             Player player = players[i];
-            scoreString += player.toString() + " = " + player.getScore() + " (" + player.getSurs().getNumberOfCards() + " Surs)";
+            int pickedCardsScore = playersScores.get(player);
+            int displayedScore = player.getScore()+pickedCardsScore;
+            scoreString += player.toString() + " = " + displayedScore + " (" + player.getSurs().getNumberOfCards() + " Surs)";
+
+            if(roundEnd) {
+                player.setScore(player.getScore() + pickedCardsScore);
+            }
         }
 
         propertyChangePublisher.firePropertyChange(ON_UPDATE_SCORE, null, scoreString);
 //        scoreLabel.setText(scoreString);
         System.out.println("Total Running Scores: " + scoreString);
     }
+
 
     private void dealingOutToPlayers(int currentStartingPlayerPos)
     {
