@@ -9,7 +9,6 @@ import ch.aplu.jcardgame.Card;
 import ch.aplu.jcardgame.Deck;
 import ch.aplu.jcardgame.Hand;
 import config.Configuration;
-import score.ScoringComposite;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -234,7 +233,7 @@ public class Pasur
                         if(k == nPlayers)
                             k = 0;
 
-                        updateScores(scoringCalculator, false);
+                        displayScores(scoringCalculator);
                     }
                 }
 
@@ -262,7 +261,7 @@ public class Pasur
             }
 
 
-            updateScores(scoringCalculator, false);
+            displayScores(scoringCalculator);
 
             currentStartingPlayerPos++;
             if(currentStartingPlayerPos == nPlayers)
@@ -334,8 +333,7 @@ public class Pasur
      */
     private void reset()
     {
-
-        updateScores(scoringCalculator, true);
+        updateScores(scoringCalculator);
 
         for(int i = 0; i < nPlayers; i++)
         {
@@ -348,12 +346,12 @@ public class Pasur
         deckHand = deck.toHand(false);
         deckHand.setVerso(true);
 
-
+        displayScores(scoringCalculator);
 
         propertyChangePublisher.firePropertyChange(ON_RESET, null, null);
     }
 
-    private void updateScores(ScoringCalculator scoringCalculator, boolean roundEnd)
+    private void displayScores(ScoringCalculator scoringCalculator)
     {
         Map<Player, Integer> playersScores = scoringCalculator.calculateScores(this.players);
         String scoreString = "";
@@ -364,17 +362,25 @@ public class Pasur
 
             Player player = players[i];
             int pickedCardsScore = playersScores.get(player);
-            int displayedScore = player.getScore()+pickedCardsScore;
+            int displayedScore = player.getScore() + pickedCardsScore;
+
             scoreString += player.toString() + " = " + displayedScore + " (" + player.getSurs().getNumberOfCards() + " Surs)";
 
-            if(roundEnd) {
-                player.setScore(player.getScore() + pickedCardsScore);
-            }
         }
 
         propertyChangePublisher.firePropertyChange(ON_UPDATE_SCORE, null, scoreString);
 //        scoreLabel.setText(scoreString);
         System.out.println("Total Running Scores: " + scoreString);
+    }
+
+    private void updateScores(ScoringCalculator scoringCalculator) {
+        Map<Player, Integer> playersScores = scoringCalculator.calculateScores(this.players);
+        for (int i = 0; i < nPlayers; i++) {
+            Player player = players[i];
+            int pickedCardsScore = playersScores.get(player);
+            player.setScore(player.getScore() + pickedCardsScore);
+
+        }
     }
 
 
