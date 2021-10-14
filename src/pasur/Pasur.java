@@ -263,6 +263,9 @@ public class Pasur
 
             displayScores(scoringCalculator);
 
+            // update the score before the round ends
+            updateScores(scoringCalculator);
+
             currentStartingPlayerPos++;
             if(currentStartingPlayerPos == nPlayers)
                 currentStartingPlayerPos = 0;
@@ -333,7 +336,7 @@ public class Pasur
      */
     private void reset()
     {
-        updateScores(scoringCalculator);
+
 
         for(int i = 0; i < nPlayers; i++)
         {
