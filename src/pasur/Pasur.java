@@ -177,6 +177,7 @@ public class Pasur
 
                             System.out.println(player.toString() + " picks " + toString(cardList));
 
+
                             if(isAsur(playedCard, isLastRound))
                             {
                                 // player has a sur. If the other players have a sur this sur will be used to remove one of their surs.
