@@ -43,11 +43,10 @@ public class Pasur
 
     private PropertyChangeSupport propertyChangePublisher = new PropertyChangeSupport(this);
 
-    private ScoringCalculator scoringCalculator;
+    private ScoringCalculator scoringCalculator = new ScoringCalculator();;
 
     public Pasur(int nPlayers) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException,
-            InstantiationException, IOException {
-        scoringCalculator = new ScoringCalculator();
+            InstantiationException {
 
         // Instantiate players
         this.nPlayers = nPlayers;
