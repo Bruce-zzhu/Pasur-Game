@@ -9,6 +9,7 @@ import ch.aplu.jcardgame.Card;
 import ch.aplu.jcardgame.Deck;
 import ch.aplu.jcardgame.Hand;
 import config.Configuration;
+import config.Logger;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

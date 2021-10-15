@@ -6,6 +6,7 @@ package pasur;
  */
 
 import ch.aplu.jcardgame.*;
+import config.Logger;
 
 import java.io.IOException;
 import java.util.*;

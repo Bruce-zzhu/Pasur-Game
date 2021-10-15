@@ -1,7 +1,5 @@
 package config;
 
-import pasur.Logger;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;

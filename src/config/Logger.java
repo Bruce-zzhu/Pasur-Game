@@ -1,4 +1,4 @@
-package pasur;
+package config;
 
 import java.io.FileWriter;
 import java.io.IOException;
