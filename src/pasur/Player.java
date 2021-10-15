@@ -7,6 +7,7 @@ package pasur;
 
 import ch.aplu.jcardgame.*;
 
+import java.io.IOException;
 import java.util.*;
 
 public abstract class Player
@@ -31,13 +32,12 @@ public abstract class Player
      * @param pool current pool
      * @return the played card and the set of cards this player wants to pick up from the pool.
      */
-    public final Map.Entry<Card, Set<Card>> playCard(Hand pool)
-    {
+    public final Map.Entry<Card, Set<Card>> playCard(Hand pool) throws IOException {
         Card playedCard = selectToPlay();
         Set<Card> cardsToPick = null;
         if(playedCard != null)
         {
-            System.out.println(toString() + " plays " + Pasur.toString(playedCard));
+            Logger.log(toString() + " plays " + Pasur.toString(playedCard));
 
             cardsToPick = pickCards(pool, playedCard);
         }
