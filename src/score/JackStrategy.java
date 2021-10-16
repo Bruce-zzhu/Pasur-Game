@@ -1,10 +1,9 @@
 package score;
 
-import ch.aplu.jcardgame.Card;
+import ch.aplu.jcardgame.Hand;
 import pasur.Player;
 import pasur.Rank;
 
-import java.util.ArrayList;
 
 public class JackStrategy implements IScoreStrategy {
     private final Enum RANK = Rank.JACK;
@@ -14,15 +13,9 @@ public class JackStrategy implements IScoreStrategy {
 
     @Override
     public int calculateScores(Player player) {
-        ArrayList<Card> pickedCards = player.getPickedCards().getCardList();
-        int counter = 0;
+        Hand pickedCards = player.getPickedCards();
+        int count = pickedCards.getNumberOfCardsWithRank(RANK);
 
-        for(Card card: pickedCards) {
-            if(card.getRank() == RANK) {
-                counter += 1;
-            }
-        }
-
-        return counter * POINT;
+        return count * POINT;
     }
 }

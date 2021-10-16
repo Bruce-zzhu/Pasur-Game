@@ -1,11 +1,9 @@
 package score;
 
-import ch.aplu.jcardgame.Card;
+import ch.aplu.jcardgame.Hand;
 import pasur.Player;
-import pasur.Rank;
 import pasur.Suit;
 
-import java.util.ArrayList;
 
 public class MostClubsStrategy implements IScoreStrategy {
     private final Enum SUIT = Suit.CLUBS;
@@ -16,16 +14,10 @@ public class MostClubsStrategy implements IScoreStrategy {
 
     @Override
     public int calculateScores(Player player) {
-        ArrayList<Card> pickedCards = player.getPickedCards().getCardList();
-        int counter = 0;
+        Hand pickedCards = player.getPickedCards();
+        int count = pickedCards.getNumberOfCardsWithSuit(SUIT);
 
-        for(Card card: pickedCards) {
-            if(card.getSuit() == SUIT) {
-                counter += 1;
-            }
-        }
-
-        if(counter >= threshold) {
+        if(count >= threshold) {
             return POINT;
         }
 
