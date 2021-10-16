@@ -1,7 +1,9 @@
-package pasur;
+package score;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import pasur.Player;
 import score.IScoreStrategy;
 import score.ScoringComposite;
 

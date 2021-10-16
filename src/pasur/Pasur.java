@@ -10,6 +10,7 @@ import ch.aplu.jcardgame.Deck;
 import ch.aplu.jcardgame.Hand;
 import config.Configuration;
 import config.Logger;
+import score.ScoringCalculator;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
