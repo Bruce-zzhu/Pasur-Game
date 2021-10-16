@@ -15,7 +15,7 @@ public class DiamondsTenStrategy implements IScoreStrategy {
     public int calculateScore(Player player) {
         Hand pickedCards = player.getPickedCards();
         // this would be nice:
-        // if pickedCards.contains(Rank.JACK);
+        // if pickedCards.contains();
 
         for(Card card: pickedCards.getCardList()) {
             if(card.getRank() == RANK && card.getSuit() == SUIT) {

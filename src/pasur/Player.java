@@ -17,6 +17,7 @@ public abstract class Player
     protected Hand hand;
     protected Hand pickedCards;
     protected Hand surs;
+    protected int score;
 
     protected Player(int id)
     {
