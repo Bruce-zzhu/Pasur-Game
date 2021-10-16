@@ -1,6 +1,8 @@
 package score;
 
 import ch.aplu.jcardgame.Card;
+import ch.aplu.jcardgame.Deck;
+import ch.aplu.jcardgame.Hand;
 import pasur.Player;
 import pasur.Rank;
 import pasur.Suit;
@@ -16,17 +18,9 @@ public class ClubsTwoStrategy implements IScoreStrategy {
 
     @Override
     public int calculateScores(Player player) {
-        ArrayList<Card> pickedCards = player.getPickedCards().getCardList();
-        boolean has = false;
+        Card card = player.getPickedCards().getCard(SUIT, RANK);
 
-        for(Card card: pickedCards) {
-            if(card.getRank() == RANK && card.getSuit() == SUIT) {
-                has = true;
-                break;
-            }
-        }
-
-        if(has) {
+        if(card != null) {
             return POINT;
         }
 

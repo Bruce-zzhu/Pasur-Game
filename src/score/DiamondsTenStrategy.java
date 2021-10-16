@@ -16,17 +16,9 @@ public class DiamondsTenStrategy implements IScoreStrategy {
 
     @Override
     public int calculateScores(Player player) {
-        ArrayList<Card> pickedCards = player.getPickedCards().getCardList();
-        boolean has = false;
+        Card card = player.getPickedCards().getCard(SUIT, RANK);
 
-        for(Card card: pickedCards) {
-            if(card.getRank() == RANK && card.getSuit() == SUIT) {
-                has = true;
-                break;
-            }
-        }
-
-        if(has) {
+        if(card != null) {
             return POINT;
         }
 
