@@ -263,7 +263,7 @@ public class Pasur
 
             displayScores(scoringCalculator);
 
-            // update the score before the round ends
+            // update the score when the round ends
             updateScores(scoringCalculator);
 
             currentStartingPlayerPos++;
