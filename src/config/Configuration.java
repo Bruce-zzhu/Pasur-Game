@@ -52,19 +52,19 @@ public class Configuration
 
         // Seed
         seed = Integer.parseInt(properties.getProperty(SEED_KEY));
-        System.out.println("#Seed: " + seed);
+        Logger.log("#Seed: " + seed);
 
         // Animate
         animate = Boolean.parseBoolean(properties.getProperty(ANIMATE_KEY));
-        System.out.println("#Animate: " + animate);
+        Logger.log("#Animate: " + animate);
 
         // Player0
         player0class = properties.getProperty(PLAYER0_KEY);
-        System.out.println("#Player0: " + player0class);
+        Logger.log("#Player0: " + player0class);
 
         // Player1
         player1class = properties.getProperty(PLAYER1_KEY);
-        System.out.println("#Player1: " + player1class);
+        Logger.log("#Player1: " + player1class);
     }
 
     public int getSeed()
