@@ -10,6 +10,7 @@ import ch.aplu.jgamegrid.Location;
 import ch.aplu.jgamegrid.TextActor;
 import ch.aplu.util.Monitor;
 import config.Configuration;
+import config.Logger;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -309,6 +310,7 @@ public class PasurGUI implements PropertyChangeListener
 
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
             InstantiationException, IllegalAccessException, IOException {
+        Logger.clearLog();
         new PasurGUI().startGame();
     }
 }

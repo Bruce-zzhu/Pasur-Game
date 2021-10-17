@@ -99,7 +99,6 @@ public class Pasur
         if(gameStarted)
             return;
         gameStarted = true;
-
         Logger.log("Game starts...");
 
         Player winner = null;
