@@ -235,5 +235,10 @@ public abstract class Player
         return 0;
     }
 
+    public void setScore(int score)
+    {
+        this.score = score;
+    }
+
     abstract Card selectToPlay();
 }
