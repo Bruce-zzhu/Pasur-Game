@@ -353,6 +353,12 @@ public class Pasur
         propertyChangePublisher.firePropertyChange(ON_RESET, null, null);
     }
 
+    /**
+     * Calculate the scores from pickedCards of each player and
+     * display with the scores that the player already had
+     * @param scoringCalculator
+     * @throws IOException
+     */
     private void displayScores(ScoringCalculator scoringCalculator) throws IOException {
         Map<Player, Integer> playersScores = scoringCalculator.calculateScores(this.players);
         String scoreString = "";
@@ -370,10 +376,13 @@ public class Pasur
         }
 
         propertyChangePublisher.firePropertyChange(ON_UPDATE_SCORE, null, scoreString);
-//        scoreLabel.setText(scoreString);
         Logger.log("Total Running Scores: " + scoreString);
     }
 
+    /**
+     * Update the scores of each player
+     * @param scoringCalculator
+     */
     private void updateScores(ScoringCalculator scoringCalculator) {
         Map<Player, Integer> playersScores = scoringCalculator.calculateScores(this.players);
         for (int i = 0; i < nPlayers; i++) {

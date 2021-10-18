@@ -311,6 +311,7 @@ public class PasurGUI implements PropertyChangeListener
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
             InstantiationException, IllegalAccessException, IOException
     {
+        // clear log before game starts
         Logger.clearLog();
         new PasurGUI().startGame();
     }

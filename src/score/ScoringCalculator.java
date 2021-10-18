@@ -15,6 +15,11 @@ public class ScoringCalculator {
         scoringComposite = new ScoringComposite();
     }
 
+    /**
+     * Calculate scores of each player
+     * @param players
+     * @return a map containing each player and their scores
+     */
     public Map<Player, Integer> calculateScores(Player[] players) {
         Map<Player, Integer> scoresOfPlayers = new HashMap<Player, Integer>();
         int score = 0;

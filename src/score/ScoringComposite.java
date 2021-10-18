@@ -19,6 +19,11 @@ public class ScoringComposite implements IScoreStrategy {
         strategies.add(new ClubsTwoStrategy());
     }
 
+    /**
+     * Iterate through each strategy and calculate aggregate scores
+     * @param player
+     * @return
+     */
     @Override
     public int calculateScores(Player player) {
         int scores = 0;
