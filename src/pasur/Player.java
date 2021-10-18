@@ -6,7 +6,9 @@ package pasur;
  */
 
 import ch.aplu.jcardgame.*;
+import config.Logger;
 
+import java.io.IOException;
 import java.util.*;
 
 public abstract class Player
@@ -18,8 +20,11 @@ public abstract class Player
     protected Hand pickedCards;
     protected Hand surs;
 
+    protected int score;
+
     protected Player(int id)
     {
+        this.score = 0;
         this.id = id;
     }
 
@@ -28,13 +33,12 @@ public abstract class Player
      * @param pool current pool
      * @return the played card and the set of cards this player wants to pick up from the pool.
      */
-    public final Map.Entry<Card, Set<Card>> playCard(Hand pool)
-    {
+    public final Map.Entry<Card, Set<Card>> playCard(Hand pool) throws IOException {
         Card playedCard = selectToPlay();
         Set<Card> cardsToPick = null;
         if(playedCard != null)
         {
-            System.out.println(toString() + " plays " + Pasur.toString(playedCard));
+            Logger.log(toString() + " plays " + Pasur.toString(playedCard));
 
             cardsToPick = pickCards(pool, playedCard);
         }
@@ -231,8 +235,12 @@ public abstract class Player
 
     public int getScore()
     {
-        return 0;
+        return this.score;
     }
 
     abstract Card selectToPlay();
+
+    public void setScore(int newScore) {
+        this.score = newScore;
+    }
 }
