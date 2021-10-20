@@ -14,13 +14,10 @@ public class ClubsTwoStrategy implements IScoreStrategy {
     @Override
     public int calculateScore(Player player) {
         Hand pickedCards = player.getPickedCards();
-        // this would be nice:
-        // if pickedCards.contains(Rank.JACK);
+        Card card = player.getPickedCards().getCard(SUIT, RANK);
 
-        for (Card card : pickedCards.getCardList()) {
-            if (card.getRank() == RANK && card.getSuit() == SUIT) {
-                return POINTS;
-            }
+        if(card != null) {
+            return POINTS;
         }
         return 0;
     }
