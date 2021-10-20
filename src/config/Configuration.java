@@ -50,6 +50,9 @@ public class Configuration
             }
         }
 
+        // clear log at the start
+        Logger.clearLog();
+
         // Seed
         seed = Integer.parseInt(properties.getProperty(SEED_KEY));
         Logger.log("#Seed: " + seed);
