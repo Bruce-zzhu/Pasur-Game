@@ -11,12 +11,6 @@ public class ScoringComposite implements IScoreStrategy {
 
     public ScoringComposite() {
         strategies = new ArrayList<>();
-        strategies.add(new AceStrategy());
-        strategies.add(new JackStrategy());
-        strategies.add(new DiamondsTenStrategy());
-        strategies.add(new MostClubsStrategy());
-        strategies.add(new SurStrategy());
-        strategies.add(new ClubsTwoStrategy());
     }
 
     /**
@@ -31,6 +25,10 @@ public class ScoringComposite implements IScoreStrategy {
             scores += s.calculateScores(player);
         }
         return scores;
+    }
+
+    public void addStrategy(IScoreStrategy strategy) {
+        strategies.add(strategy);
     }
 
 }

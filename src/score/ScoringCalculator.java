@@ -9,10 +9,16 @@ import score.ScoringComposite;
 
 public class ScoringCalculator {
 
-    IScoreStrategy scoringComposite;
+    ScoringComposite scoringComposite;
 
     public ScoringCalculator() {
         scoringComposite = new ScoringComposite();
+        scoringComposite.addStrategy(new AceStrategy());
+        scoringComposite.addStrategy(new JackStrategy());
+        scoringComposite.addStrategy(new DiamondsTenStrategy());
+        scoringComposite.addStrategy(new MostClubsStrategy());
+        scoringComposite.addStrategy(new SurStrategy());
+        scoringComposite.addStrategy(new ClubsTwoStrategy());
     }
 
     /**
