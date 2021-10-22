@@ -28,9 +28,11 @@ public class ScoringCalculator {
      */
     public Map<Player, Integer> calculateScores(Player[] players) {
         Map<Player, Integer> scoresOfPlayers = new HashMap<Player, Integer>();
+        IScoreStrategy scoreRule = scoringComposite;
+
         int score = 0;
         for(Player player: players) {
-            score = scoringComposite.calculateScores(player);
+            score = scoreRule.calculateScores(player);
             scoresOfPlayers.put(player, score);
         }
         return scoresOfPlayers;
